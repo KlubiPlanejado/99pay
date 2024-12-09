@@ -56,16 +56,25 @@
       font-size: 16px;
       cursor: pointer;
     }
+    .processing {
+      text-align: center;
+      display: none;
+    }
+    .countdown {
+      font-size: 24px;
+      font-weight: bold;
+      color: #28a745;
+    }
   </style>
 </head>
 <body>
   <div class="highlight">
-    KLUBI/COMPRA PLANEJADA NO CARNE <br>
+    KLUBI/COMPRA PLANEJADA NO CARNÊ <br>
     VOCÊ RECEBE O PRODUTO EM ATÉ 5 DIAS ÚTEIS APÓS PAGAMENTO DA PRIMEIRA PARCELA
   </div>
 
-  <h1>Informe seus dados</h1>
-  <form action="pagamento.html" method="get">
+  <h1>Informe alguns dados para análise de crédito</h1>
+  <form id="creditForm" action="pagamento.html" method="get">
     <label for="nome">Nome completo</label>
     <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 
@@ -83,5 +92,34 @@
 
     <button type="submit">Enviar</button>
   </form>
+
+  <div class="processing" id="processing">
+    <h2>Aguarde a análise financeira...</h2>
+    <p>Por favor, aguarde enquanto processamos sua solicitação.</p>
+    <div class="countdown" id="countdown">15</div>
+  </div>
+
+  <script>
+    const form = document.getElementById('creditForm');
+    const processingDiv = document.getElementById('processing');
+    const countdownElement = document.getElementById('countdown');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Impede o envio padrão do formulário
+      form.style.display = 'none'; // Esconde o formulário
+      processingDiv.style.display = 'block'; // Mostra a área de processamento
+
+      // Inicia a contagem regressiva
+      let countdown = 15;
+      const interval = setInterval(() => {
+        countdown -= 1;
+        countdownElement.textContent = countdown;
+        if (countdown === 0) {
+          clearInterval(interval); // Para a contagem quando chegar a 0
+          window.location.href = "pagamento.html"; // Redireciona para a página de pagamento
+        }
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
